@@ -1,0 +1,46 @@
+// média >=70 && <=100 --> aprovado // média >=40 && <70 --> prova final // falta >15 --> reprovado
+import java.util.Scanner; // importar dados do usuário
+public class prova{
+    public static void main(String args[]){
+        // declaração das variáveis
+        double media[] = new double[20]; // double porque a média pode ser um número quebrado (real)
+        int faltas[] = new int[20]; // número inteiro
+
+        // solicitação dos valores (ENTRADA)
+        Scanner sc = new Scanner(System.in);
+        
+        for(int i=0; i<20; i++){ // lógica utilizada para entrada de dados dos alunos (média e faltas)
+            System.out.println("Informe a média do aluno "+(1+i));
+            media[i] = sc.nextDouble(); // armazenamento de média
+
+            System.out.println("Informe a quantidade de faltas do aluno "+(1+i));
+            faltas[i] = sc.nextInt(); // armazenamento de faltas
+        }
+        
+         int qntAprovados = calc(faltas, media); // chamada do método
+
+         System.out.println(qntAprovados + " alunos foram aprovados"); // exibição na tela (SAÍDA)
+    }
+
+        public static int calc(int[] faltas, double[] media){ // método para cálculo das médias, faltas e quantidade de alunos aprovados
+            int aprovados = 0;
+
+            for(int i=0; i<faltas.length; i++){ // cálculo (PROCESSAMENTO)
+                if(faltas[i] > 15){ 
+                System.out.printf("Aluno %d reprovado por falta. Sem direito a prova final!\n",i+1);
+                }
+                else{
+                if(media[i] >= 70){ 
+                    System.out.printf("Aluno %d aprovado!\n",i+1);
+                    aprovados++; // contador de alunos aprovados
+                } else if(media[i] >= 40){
+                    System.out.printf("Aluno %d irá para prova final!\n",i+1);
+                } if(media[i] < 40){
+                    System.out.printf("Aluno %d reprovado!\n",i+1);
+                }
+            }
+            }
+
+            return aprovados; // retornar quantidade de alunos aprovados
+        }
+}
